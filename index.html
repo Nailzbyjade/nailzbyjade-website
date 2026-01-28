@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NailzByJade</title>
 
-  <!-- React (no JSX, no Babel – super reliable) -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
@@ -19,49 +18,136 @@
 
     h1, h2, h3 {
       text-align: center;
+      margin-bottom: 10px;
     }
 
     .container {
-      padding: 20px;
+      padding: 18px;
       max-width: 900px;
       margin: auto;
     }
 
     .card {
       background: #fff;
-      padding: 22px;
+      padding: 20px;
       border-radius: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 30px;
+      margin-bottom: 18px;
     }
 
     button {
-      padding: 14px 26px;
-      border-radius: 20px;
+      padding: 12px 18px;
+      border-radius: 18px;
       border: none;
       cursor: pointer;
-      background: #fff;
-      font-weight: bold;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+    }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .img-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .contacts-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-pill {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .contact-pill span {
+      font-weight: 800;
+    }
+
+    a {
+      color: #000;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .help {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .primary {
+      background: #000;
+      color: #fff;
+      padding: 14px;
+      border-radius: 18px;
+      font-weight: 800;
+      border: none;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 28px; }
-      h2 { font-size: 22px; }
-      .card { padding: 18px; }
+      .img-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
   <div id="root"></div>
+
+  <!-- Netlify form detection -->
+  <form name="booking-request" method="POST" data-netlify="true" enctype="multipart/form-data" hidden>
+    <input type="hidden" name="form-name" value="booking-request" />
+    <input name="name" />
+    <input name="contact" />
+    <input name="service" />
+    <input name="date" />
+    <input name="time" />
+    <input name="inspo" type="file" />
+  </form>
 
   <script>
     function App() {
@@ -83,63 +169,121 @@
           "div",
           { className: "buttons" },
           React.createElement("button", { onClick: () => setSection("home") }, "Home"),
-          React.createElement("button", { onClick: () => setSection("policies") }, "Booking Policies"),
-          React.createElement("button", { onClick: () => setSection("services") }, "Services")
+          React.createElement("button", { onClick: () => setSection("services") }, "Services"),
+          React.createElement("button", { onClick: () => setSection("book") }, "Book")
         ),
 
         section === "home" &&
           React.createElement(
-            "div",
-            { className: "card" },
-            React.createElement("h3", null, "Meet Me"),
+            React.Fragment,
+            null,
+
             React.createElement(
-              "p",
-              null,
-              "Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London and I've been doing nails for a little over a year now. I enjoy making my clients feel pretty and pampered whether it's a simple or bold set. Your comfort and satisfaction will always be the main priority; I look forward to meeting you xx"
+              "div",
+              { className: "card" },
+              React.createElement("h3", null, "Meet Me"),
+              React.createElement(
+                "p",
+                null,
+                "Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London. I enjoy making my clients feel pretty and pampered whether it's a simple or bold set. Your comfort and satisfaction will always be my main priority."
+              )
+            ),
+
+            React.createElement(
+              "div",
+              { className: "card" },
+              React.createElement("h3", null, "Contacts"),
+
+              React.createElement(
+                "div",
+                { className: "contacts-row" },
+
+                React.createElement(
+                  "div",
+                  { className: "contact-pill" },
+                  React.createElement("span", null, "Instagram"),
+                  React.createElement("a", { href: "https://instagram.com/nailzbyjade__", target: "_blank" }, "@nailzbyjade__")
+                ),
+
+                React.createElement(
+                  "div",
+                  { className: "contact-pill" },
+                  React.createElement("span", null, "TikTok"),
+                  React.createElement("a", { href: "https://tiktok.com/@nailzbyjade_", target: "_blank" }, "@nailzbyjade_")
+                ),
+
+                React.createElement(
+                  "div",
+                  { className: "contact-pill" },
+                  React.createElement("span", null, "Email"),
+                  React.createElement("a", { href: "mailto:nailzbyjade@outlook.com" }, "nailzbyjade@outlook.com")
+                )
+              )
             )
-          ),
-
-        section === "policies" &&
-          React.createElement(
-            "div",
-            { className: "card" },
-            React.createElement("h3", null, "♡ Booking Policies ♡"),
-
-            React.createElement("p", null, React.createElement("strong", null, "Payments")),
-            React.createElement("p", null, "A non-refundable deposit of £5 is required upon booking all appointments; it will be deducted from the total balance,"),
-            React.createElement("p", null, "no deposit, no appointment"),
-            React.createElement("p", null, "I accept cash and bank transfer as a form of payment"),
-            React.createElement("p", null, "Make sure to bring the full amount as I may not have change on me"),
-
-            React.createElement("p", null, React.createElement("strong", null, "Cancellation & rescheduling")),
-            React.createElement("p", null, "A 24-hour notice is required prior to cancellation or rescheduling of any appointment"),
-            React.createElement("p", null, "No communication & no show means your appointment is cancalled and you will be no longer allowed to book with me"),
-
-            React.createElement("p", null, React.createElement("strong", null, "Later arrivals")),
-            React.createElement("p", null, "Do not be late to your appointment (please be mindful as I have a schedule to follow)"),
-            React.createElement("p", null, "A 15 min grace period will be given, going over that time means your appointment is cancelled"),
-
-            React.createElement("p", null, React.createElement("strong", null, "Health and safety")),
-            React.createElement("p", null, "I will not be working over damaged nails, e.g. fungus, heavily torn nails. If you turn up will damaged nails, I will simply refuse service"),
-            React.createElement("p", null, "If you are feeling unwell, do not show up to the appointment we can reschedule for another date"),
-
-            React.createElement("p", null, "Thanks for reading xoxo")
           ),
 
         section === "services" &&
           React.createElement(
             "div",
             { className: "card" },
-            React.createElement("h3", null, "Services"),
-            React.createElement("p", null, "Poly Gel Sets"),
-            React.createElement("p", null, "Press On Nails")
+            React.createElement("h3", null, "♡ Poly Gel Sets ♡"),
+            React.createElement("div", { className: "price-row" }, "Short set", "£10"),
+            React.createElement("div", { className: "price-row" }, "Medium set", "£15"),
+            React.createElement("div", { className: "price-row" }, "Long set", "£20"),
+            React.createElement("div", { className: "price-row" }, "Extra long", "£25"),
+
+            React.createElement(
+              "div",
+              { className: "img-grid" },
+              React.createElement("img", { src: "images/polygel-1.jpg" }),
+              React.createElement("img", { src: "images/polygel-2.jpg" })
+            ),
+
+            React.createElement("h3", { style: { marginTop: "18px" } }, "♡ Press On Nails ♡"),
+
+            React.createElement(
+              "div",
+              { className: "img-grid" },
+              React.createElement("img", { src: "images/presson-1.jpg" })
+            ),
+
+            React.createElement("h3", { style: { marginTop: "14px" } }, "How to order press on nails"),
+            React.createElement(
+              "ol",
+              { style: { paddingLeft: "18px", lineHeight: "1.6" } },
+              React.createElement("li", null, "DM me your inspo picture"),
+              React.createElement("li", null, "Request any changes (optional)"),
+              React.createElement("li", null, "Send a picture of your hand next to a £1 coin (or any coin) for sizing")
+            )
+          ),
+
+        section === "book" &&
+          React.createElement(
+            "div",
+            { className: "card" },
+            React.createElement("h3", null, "Request an appointment"),
+            React.createElement("p", { className: "help" }, "Upload one inspo picture from your camera roll. I’ll confirm availability."),
+            React.createElement("p", { className: "help" }, "Deposit: A non-refundable £5 deposit is required to secure your appointment. Paid via bank transfer after confirmation and deducted from the total. No deposit, no appointment."),
+
+            React.createElement(
+              "form",
+              { name: "booking-request", method: "POST", action: "/thank-you", "data-netlify": "true", encType: "multipart/form-data" },
+              React.createElement("input", { type: "hidden", name: "form-name", value: "booking-request" }),
+
+              React.createElement("input", { name: "name", placeholder: "Your name", required: true }),
+              React.createElement("input", { name: "contact", placeholder: "Phone or Instagram @", required: true }),
+              React.createElement("input", { name: "service", placeholder: "Service", required: true }),
+              React.createElement("input", { type: "date", name: "date", required: true }),
+              React.createElement("input", { type: "time", name: "time", required: true }),
+              React.createElement("input", { type: "file", name: "inspo", accept: "image/*", required: true }),
+              React.createElement("textarea", { name: "notes", placeholder: "Any notes or changes (optional)" }),
+              React.createElement("button", { className: "primary", type: "submit" }, "Send booking request")
+            )
           )
       );
     }
 
-    ReactDOM.createRoot(document.getElementById("root")).render(
-      React.createElement(App)
-    );
+    ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
   </script>
 </body>
 </html>
