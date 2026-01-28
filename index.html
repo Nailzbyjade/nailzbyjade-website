@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NailzByJade</title>
 
-  <!-- React CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- React (no JSX, no Babel – super reliable) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
   <style>
     body {
@@ -17,14 +16,17 @@
       background: #fde2e7;
       color: #000;
     }
+
     h1, h2, h3 {
       text-align: center;
     }
+
     .container {
       padding: 20px;
       max-width: 900px;
       margin: auto;
     }
+
     .card {
       background: #fff;
       padding: 22px;
@@ -32,6 +34,7 @@
       margin-bottom: 24px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
+
     .buttons {
       display: flex;
       justify-content: center;
@@ -39,6 +42,7 @@
       flex-wrap: wrap;
       margin-bottom: 30px;
     }
+
     button {
       padding: 14px 26px;
       border-radius: 20px;
@@ -47,6 +51,7 @@
       background: #fff;
       font-weight: bold;
     }
+
     @media (max-width: 600px) {
       h1 { font-size: 28px; }
       h2 { font-size: 22px; }
@@ -58,47 +63,83 @@
 <body>
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script>
     function App() {
       const [section, setSection] = React.useState("home");
 
-      return (
-        <div className="container">
-          <header className="card">
-            <h1>Welcome to my website</h1>
-            <h2>♡ NailzByJade ♡</h2>
-            <p style={{ textAlign: "center" }}>North London</p>
-          </header>
+      return React.createElement(
+        "div",
+        { className: "container" },
 
-          <div className="buttons">
-            <button onClick={() => setSection("home")}>Home</button>
-            <button onClick={() => setSection("policies")}>Booking Policies</button>
-            <button onClick={() => setSection("services")}>Services</button>
-          </div>
+        React.createElement(
+          "header",
+          { className: "card" },
+          React.createElement("h1", null, "Welcome to my website"),
+          React.createElement("h2", null, "♡ NailzByJade ♡"),
+          React.createElement("p", { style: { textAlign: "center" } }, "North London")
+        ),
 
-          {section === "home" && (
-            <div className="card">
-              <h3>Meet Me</h3>
-              <p>
-                Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London and
-                I've been doing nails for a little over a year now. I enjoy making my clients feel pretty
-                and pampered whether it's a simple or bold set. Your comfort and satisfaction will always
-                be the main priority; I look forward to meeting you xx
-              </p>
-            </div>
-          )}
+        React.createElement(
+          "div",
+          { className: "buttons" },
+          React.createElement("button", { onClick: () => setSection("home") }, "Home"),
+          React.createElement("button", { onClick: () => setSection("policies") }, "Booking Policies"),
+          React.createElement("button", { onClick: () => setSection("services") }, "Services")
+        ),
 
-          {section === "policies" && (
-            <div className="card">
-              <h3>♡ Booking Policies ♡</h3>
-              <p><strong>Payments</strong></p>
-              <p>A non-refundable deposit of £5 is required upon booking all appointments; it will be deducted from the total balance,</p>
-              <p>no deposit, no appointment</p>
-              <p>I accept cash and bank transfer as a form of payment</p>
-              <p>Make sure to bring the full amount as I may not have change on me</p>
-              <p><strong>Cancellation & rescheduling</strong></p>
-              <p>A 24-hour notice is required prior to cancellation or rescheduling of any appointment</p>
-              <p>No communication & no show means your appointment is cancalled and you will be no longer allowed to book with me</p>
-              <p><strong>Later arrivals</strong></p>
-              <p>Do not be late to your appointment (please be mindful as I have a schedule to follow)</p>
-              <p>A 15 min grace period will be given, going ove
+        section === "home" &&
+          React.createElement(
+            "div",
+            { className: "card" },
+            React.createElement("h3", null, "Meet Me"),
+            React.createElement(
+              "p",
+              null,
+              "Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London and I've been doing nails for a little over a year now. I enjoy making my clients feel pretty and pampered whether it's a simple or bold set. Your comfort and satisfaction will always be the main priority; I look forward to meeting you xx"
+            )
+          ),
+
+        section === "policies" &&
+          React.createElement(
+            "div",
+            { className: "card" },
+            React.createElement("h3", null, "♡ Booking Policies ♡"),
+
+            React.createElement("p", null, React.createElement("strong", null, "Payments")),
+            React.createElement("p", null, "A non-refundable deposit of £5 is required upon booking all appointments; it will be deducted from the total balance,"),
+            React.createElement("p", null, "no deposit, no appointment"),
+            React.createElement("p", null, "I accept cash and bank transfer as a form of payment"),
+            React.createElement("p", null, "Make sure to bring the full amount as I may not have change on me"),
+
+            React.createElement("p", null, React.createElement("strong", null, "Cancellation & rescheduling")),
+            React.createElement("p", null, "A 24-hour notice is required prior to cancellation or rescheduling of any appointment"),
+            React.createElement("p", null, "No communication & no show means your appointment is cancalled and you will be no longer allowed to book with me"),
+
+            React.createElement("p", null, React.createElement("strong", null, "Later arrivals")),
+            React.createElement("p", null, "Do not be late to your appointment (please be mindful as I have a schedule to follow)"),
+            React.createElement("p", null, "A 15 min grace period will be given, going over that time means your appointment is cancelled"),
+
+            React.createElement("p", null, React.createElement("strong", null, "Health and safety")),
+            React.createElement("p", null, "I will not be working over damaged nails, e.g. fungus, heavily torn nails. If you turn up will damaged nails, I will simply refuse service"),
+            React.createElement("p", null, "If you are feeling unwell, do not show up to the appointment we can reschedule for another date"),
+
+            React.createElement("p", null, "Thanks for reading xoxo")
+          ),
+
+        section === "services" &&
+          React.createElement(
+            "div",
+            { className: "card" },
+            React.createElement("h3", null, "Services"),
+            React.createElement("p", null, "Poly Gel Sets"),
+            React.createElement("p", null, "Press On Nails")
+          )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      React.createElement(App)
+    );
+  </script>
+</body>
+</html>
