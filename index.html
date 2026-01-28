@@ -1,12 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NailzbyJade</title>
-  </head>
-  <body>
-    <div id="root"></div>
- <script type="module" src="./main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NailzByJade</title>
+
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (lets browser read JSX safely) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fde2e7;
+      color: #000;
+    }
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button {
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      const [section, setSection] = React.useState("home");
+
+      return (
+        <div style={{ padding: "24px" }}>
+          <header style={{ textAlign: "center", marginBottom: "32px" }}>
+            <h1>Welcome to my website</h1>
+            <h2>♡ NailzByJade ♡</h2>
+            <p>North London</p>
+          </header>
+
+          <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginBottom: "32px" }}>
+            <button onClick={() => setSection("home")}>Home</button>
+            <button onClick={() => setSection("services")}>Services</button>
+          </div>
+
+          {section === "home" && (
+            <div className="card">
+              <h3>Meet Me</h3>
+              <p>
+                Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London.
+                I enjoy making my clients feel pretty and pampered whether it's a simple or bold set.
+                Your comfort and satisfaction will always be my main priority.
+              </p>
+            </div>
+          )}
+
+          {section === "services" && (
+            <div className="card">
+              <h3>Services</h3>
+              <p>Poly Gel Sets</p>
+              <p>Press On Nails</p>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
 </html>
