@@ -8,44 +8,28 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-  <style>.image-row {
-<style>
-{`
-  .image-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 10px;
-  }
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fde2e7; color: #000; }
+    h1, h2, h3 { text-align: center; margin: 0 0 10px; }
+    .container { padding: 18px; max-width: 900px; margin: auto; }
+    .card { background: #fff; padding: 20px; border-radius: 18px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    .buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    button { padding: 12px 18px; border-radius: 18px; border: none; cursor: pointer; background: #000; color: #fff; font-weight: 700; }
+    .price-row { display: flex; justify-content: space-between; gap: 10px; margin: 8px 0; }
+    .img-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
+    .img-grid img { width: 100%; height: 190px; object-fit: cover; border-radius: 16px; display: block; background: #f7cbd6; }
+    .contacts-row { display: grid; gap: 10px; }
+    .contact-pill { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.1); }
+    .contact-pill span { font-weight: 800; }
+    a { color: #000; font-weight: 800; text-decoration: none; }
 
-  .image-row img {
-    width: 30%;
-    max-width: 250px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    form { display: grid; gap: 10px; }
+    input, textarea { padding: 12px; border-radius: 14px; border: 1px solid rgba(0,0,0,0.15); font-size: 14px; }
+    textarea { min-height: 90px; resize: vertical; }
+    .help { font-size: 13px; opacity: 0.75; margin: 0; }
+    .primary { background: #000; color: #fff; padding: 14px; border-radius: 18px; font-weight: 800; border: none; cursor: pointer; }
 
-  .image-row img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
-
-  @media (max-width: 768px) {
-    .image-row img {
-      width: 45%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .image-row img {
-      width: 90%;
-    }
-  }
-`}
-</style>
-}
+    @media (max-width: 600px) { .img-grid { grid-template-columns: 1fr; } .img-grid img { height: 230px; } }
   </style>
 </head>
 
@@ -140,13 +124,12 @@
 
               React.createElement("h3", null, "♡ Poly Gel Sets ♡"),
 
-          React.createElement(
-  "div",
-  { className: "image-row" }, // use the same class name as our CSS
-  React.createElement("img", { src: "https://i.ibb.co/Swg3LWsx", alt: "Poly Gel 1" }),
-  React.createElement("img", { src: "https://i.ibb.co/mrhnRTnS", alt: "Poly Gel 2" }),
-  React.createElement("img", { src: "https://i.ibb.co/dw65FMVj", alt: "Poly Gel 3" })
-)
+              React.createElement(
+                "div",
+                { className: "img-grid" },
+                React.createElement("img", { src: "images/polygel-1.jpg", alt: "Poly gel set" }),
+                React.createElement("img", { src: "images/polygel-2.jpg", alt: "Poly gel set" })
+              ),
 
               React.createElement("div", { style: { marginTop: "14px" } }),
 
@@ -169,11 +152,14 @@
 
             // PRESS ONS (photos first, then how to order)
             React.createElement(
-  "div",
-  { className: "image-row" },
-  React.createElement("img", { src: "https://i.ibb.co/ZRWrNXSJ", alt: "Press On 1" }),
-  React.createElement("img", { src: "https://i.ibb.co/svK7k2SS", alt: "Press On 2" })
-)
+              "div",
+              { className: "card" },
+              React.createElement("h3", null, "♡ Press On Nails ♡"),
+
+              React.createElement(
+                "div",
+                { className: "img-grid" },
+                React.createElement("img", { src: "images/presson-1.jpg", alt: "Press on nails" })
               ),
 
               React.createElement("h3", { style: { marginTop: "16px" } }, "How to order press on nails"),
