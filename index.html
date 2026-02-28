@@ -3,64 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <title>NailzByJade</title>
+
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
   <style>
-    body { margin:0; font-family:Arial; background:#fde2e7; }
-    .container { max-width:900px; margin:auto; padding:20px; }
-    .card { background:#fff; padding:20px; border-radius:18px; margin-bottom:20px; }
-    .img-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:15px; }
-    .img-grid img { width:100%; border-radius:15px; object-fit:cover; }
-    .price-row { display:flex; justify-content:space-between; margin:6px 0; }
-    button { padding:10px 15px; border-radius:15px; border:none; background:#000; color:#fff; cursor:pointer; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fde2e7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .img-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      background: #f7cbd6;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+    }
   </style>
 </head>
+
 <body>
 <div id="root"></div>
 
 <script>
-function App(){
-  const [section,setSection] = React.useState("services");
+function App() {
+  return React.createElement(
+    "div",
+    { className: "container" },
 
-  return React.createElement("div",{className:"container"},
-
-    React.createElement("div",{className:"card"},
-      React.createElement("h2",null,"♡ NailzByJade ♡")
+    // HEADER
+    React.createElement(
+      "div",
+      { className: "card" },
+      React.createElement("h1", null, "Welcome to my website"),
+      React.createElement("h2", null, "♡ NailzByJade ♡")
     ),
 
-    React.createElement("div",{className:"card"},
+    // POLY GEL SECTION
+    React.createElement(
+      "div",
+      { className: "card" },
 
-      React.createElement("h3",null,"♡ Poly Gel Sets ♡"),
+      React.createElement("h3", null, "♡ Poly Gel Sets ♡"),
 
-      React.createElement("div",{className:"img-grid"},
-        React.createElement("img",{src:"images/polygel1.jpg"}),
-        React.createElement("img",{src:"images/polygel2.jpg"})
+      // IMAGES FIRST
+      React.createElement(
+        "div",
+        { className: "img-grid" },
+        React.createElement("img", { src: "images/polygel1.jpg" }),
+        React.createElement("img", { src: "images/polygel2.jpg" })
       ),
 
-      React.createElement("div",{className:"price-row"},"Short set","£10"),
-      React.createElement("div",{className:"price-row"},"Medium set","£15"),
-      React.createElement("div",{className:"price-row"},"Long set","£20"),
-      React.createElement("div",{className:"price-row"},"Extra long","£25"),
+      // PRICES
+      React.createElement("div", { className: "price-row" }, "Short set", "£10"),
+      React.createElement("div", { className: "price-row" }, "Medium set", "£15"),
+      React.createElement("div", { className: "price-row" }, "Long set", "£20"),
+      React.createElement("div", { className: "price-row" }, "Extra long", "£25"),
 
-      React.createElement("h4",{style:{marginTop:"15px"}},"Add-ons"),
-      React.createElement("div",{className:"price-row"},"Charms","£1"),
-      React.createElement("div",{className:"price-row"},"Chrome","£1"),
-      React.createElement("div",{className:"price-row"},"3D designs","£2")
+      // ADD ONS
+      React.createElement("h3", { style: { marginTop: "15px" } }, "Add-ons"),
+      React.createElement("div", { className: "price-row" }, "Charms", "£1"),
+      React.createElement("div", { className: "price-row" }, "Chrome", "£1"),
+      React.createElement("div", { className: "price-row" }, "3D designs", "£2")
     ),
 
-    React.createElement("div",{className:"card"},
-      React.createElement("h3",null,"♡ Press On Nails ♡"),
+    // PRESS ON SECTION (UNCHANGED STYLE)
+    React.createElement(
+      "div",
+      { className: "card" },
 
-      React.createElement("div",{className:"img-grid"},
-        React.createElement("img",{src:"images/presson1.jpg"})
+      React.createElement("h3", null, "♡ Press On Nails ♡"),
+
+      React.createElement(
+        "div",
+        { className: "img-grid" },
+        React.createElement("img", { src: "images/presson1.jpg" })
       ),
 
-      React.createElement("p",null,"DM me your inspo picture to order press on nails.")
+      React.createElement(
+        "ol",
+        { style: { lineHeight: "1.6" } },
+        React.createElement("li", null, "DM me your inspo picture"),
+        React.createElement("li", null, "Request changes if needed"),
+        React.createElement("li", null, "Send a photo of your hand next to a coin for sizing")
+      )
     )
-  )
+  );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+ReactDOM.createRoot(document.getElementById("root")).render(
+  React.createElement(App)
+);
 </script>
 </body>
 </html>
