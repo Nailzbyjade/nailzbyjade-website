@@ -16,8 +16,6 @@
     .buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
     button { padding: 12px 18px; border-radius: 18px; border: none; cursor: pointer; background: #000; color: #fff; font-weight: 700; }
     .price-row { display: flex; justify-content: space-between; gap: 10px; margin: 8px 0; }
-    .img-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
-    .img-grid img { width: 100%; height: 190px; object-fit: cover; border-radius: 16px; display: block; background: #f7cbd6; }
     .contacts-row { display: grid; gap: 10px; }
     .contact-pill { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.1); }
     .contact-pill span { font-weight: 800; }
@@ -28,8 +26,6 @@
     textarea { min-height: 90px; resize: vertical; }
     .help { font-size: 13px; opacity: 0.75; margin: 0; }
     .primary { background: #000; color: #fff; padding: 14px; border-radius: 18px; font-weight: 800; border: none; cursor: pointer; }
-
-    @media (max-width: 600px) { .img-grid { grid-template-columns: 1fr; } .img-grid img { height: 230px; } }
   </style>
 </head>
 
@@ -71,21 +67,16 @@
             React.createElement(
               "div",
               { className: "card" },
-              React.createElement("h3", null, "Meet Me"),
+              React.createElement("h3", null, "Meet Me & Contacts"),
               React.createElement(
                 "p",
-                { style: { margin: 0, lineHeight: 1.6 } },
+                { style: { lineHeight: "1.6" } },
                 "Hey everyone, my name is Jade, I'm a self-taught nail technician based in North London and I've been doing nails for a little over a year now. I enjoy making my clients feel pretty and pampered whether it's a simple or bold set. Your comfort and satisfaction will always be the main priority; I look forward to meeting you xx"
-              )
-            ),
+              ),
 
-            React.createElement(
-              "div",
-              { className: "card" },
-              React.createElement("h3", null, "Contacts"),
               React.createElement(
                 "div",
-                { className: "contacts-row" },
+                { className: "contacts-row", style: { marginTop: "18px" } },
 
                 React.createElement(
                   "div",
@@ -108,6 +99,36 @@
                   React.createElement("a", { href: "mailto:nailzbyjade@outlook.com" }, "nailzbyjade@outlook.com")
                 )
               )
+            ),
+
+            React.createElement(
+              "div",
+              { className: "card" },
+              React.createElement("h3", null, "♡ Booking Policies ♡"),
+
+              React.createElement("p", null, React.createElement("strong", null, "Payments")),
+              React.createElement("p", null, "A non-refundable £5 deposit is required to secure your appointment. This deposit is deducted from your total."),
+              React.createElement("p", null, "Deposit is paid via bank transfer after booking confirmation."),
+              React.createElement("p", null, "No deposit, no appointment."),
+              React.createElement("p", null, "I accept cash and bank transfer as a form of payment."),
+              React.createElement("p", null, "Please bring the full amount as I may not have change on me."),
+
+              React.createElement("p", null, React.createElement("strong", null, "Cancellation & Rescheduling")),
+              React.createElement("p", null, "A 24-hour notice is required prior to cancellation or rescheduling of any appointment."),
+              React.createElement("p", null, "No communication and no show means your appointment is cancelled and you may no longer be allowed to book with me."),
+
+              React.createElement("p", null, React.createElement("strong", null, "Late Arrivals")),
+              React.createElement("p", null, "Please do not be late to your appointment as I have a schedule to follow."),
+              React.createElement("p", null, "A 15-minute grace period will be given. Going over that time means your appointment is cancelled."),
+
+              React.createElement("p", null, React.createElement("strong", null, "Appointment Info")),
+              React.createElement("p", null, "The address will be sent 24 hours before your appointment."),
+              React.createElement("p", null, "No plus ones please."),
+
+              React.createElement("p", null, React.createElement("strong", null, "Health & Safety")),
+              React.createElement("p", null, "I will not work over damaged nails, e.g. fungus or heavily torn nails. If you arrive with damaged nails, I may refuse service."),
+              React.createElement("p", null, "If you are feeling unwell, please do not attend your appointment — we can reschedule for another date."),
+              React.createElement("p", null, "Thanks for reading xoxo")
             )
           ),
 
@@ -117,21 +138,11 @@
             React.Fragment,
             null,
 
-            // POLY GEL (images first, then prices + add-ons)
+            // POLY GEL
             React.createElement(
               "div",
               { className: "card" },
-
               React.createElement("h3", null, "♡ Poly Gel Sets ♡"),
-
-              React.createElement(
-                "div",
-                { className: "img-grid" },
-                React.createElement("img", { src: "images/polygel-1.jpg", alt: "Poly gel set" }),
-                React.createElement("img", { src: "images/polygel-2.jpg", alt: "Poly gel set" })
-              ),
-
-              React.createElement("div", { style: { marginTop: "14px" } }),
 
               React.createElement("div", { className: "price-row" }, "Short set", "£10"),
               React.createElement("div", { className: "price-row" }, "Medium set", "£15"),
@@ -150,17 +161,11 @@
               React.createElement("div", { className: "price-row" }, "Nail designs / art", "£1–£5 (price may vary)")
             ),
 
-            // PRESS ONS (photos first, then how to order)
+            // PRESS ONS
             React.createElement(
               "div",
               { className: "card" },
               React.createElement("h3", null, "♡ Press On Nails ♡"),
-
-              React.createElement(
-                "div",
-                { className: "img-grid" },
-                React.createElement("img", { src: "images/presson-1.jpg", alt: "Press on nails" })
-              ),
 
               React.createElement("h3", { style: { marginTop: "16px" } }, "How to order press on nails"),
               React.createElement(
@@ -173,20 +178,19 @@
             )
           ),
 
-        // BOOK (Netlify form)
+        // BOOK
         section === "book" &&
           React.createElement(
             "div",
             { className: "card" },
             React.createElement("h3", null, "Request an appointment"),
-            React.createElement("p", { className: "help" }, "Upload one inspo picture from your camera roll."),
-            React.createElement("p", { className: "help" }, "Deposit: A non-refundable £5 deposit is required to secure your appointment. Deposit is paid via bank transfer after booking confirmation and is deducted from the total. No deposit, no appointment."),
+            React.createElement("p", { className: "help" }, "Upload one inspo picture."),
+            React.createElement("p", { className: "help" }, "Deposit: A non-refundable £5 deposit is required to secure your appointment. Deposit is paid via bank transfer after booking confirmation and is deducted from the total."),
 
             React.createElement(
               "form",
               { name: "booking-request", method: "POST", action: "/thank-you", "data-netlify": "true", encType: "multipart/form-data" },
 
-              // Netlify needs this hidden input inside the real form
               React.createElement("input", { type: "hidden", name: "form-name", value: "booking-request" }),
 
               React.createElement("input", { name: "name", placeholder: "Your name", required: true }),
@@ -196,7 +200,7 @@
               React.createElement("input", { type: "time", name: "time", required: true }),
               React.createElement("input", { type: "file", name: "inspo", accept: "image/*", required: true }),
               React.createElement("textarea", { name: "notes", placeholder: "Any notes or changes (optional)" }),
-              React.createElement("button", { className: "primary", type: "submit" }, "Send booking request")
+              React.createElement("button", { className: "primary", type: "submit" }, "Request booking")
             )
           )
       );
