@@ -88,11 +88,13 @@
       gap: 10px;
     }
 
-    input, textarea {
+    input, textarea, select {
       padding: 12px;
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,0.15);
       font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     textarea {
@@ -114,6 +116,16 @@
       font-weight: 800;
       border: none;
       cursor: pointer;
+      width: 100%;
+    }
+
+    .success {
+      text-align: center;
+      padding: 14px;
+      border-radius: 16px;
+      background: #fff0f4;
+      margin-top: 12px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -124,12 +136,40 @@
   <script>
     function App() {
       const [section, setSection] = React.useState("home");
+      const [submitted, setSubmitted] = React.useState(false);
+
+      function handleBooking(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const name = form.name.value;
+        const contact = form.contact.value;
+        const service = form.service.value;
+        const date = form.date.value;
+        const time = form.time.value;
+        const notes = form.notes.value;
+
+        const subject = encodeURIComponent("New Booking Request - NailzByJade");
+        const body = encodeURIComponent(
+          "Name: " + name + "\\n" +
+          "Contact: " + contact + "\\n" +
+          "Service: " + service + "\\n" +
+          "Preferred Date: " + date + "\\n" +
+          "Preferred Time: " + time + "\\n" +
+          "Notes: " + notes + "\\n\\n" +
+          "Client may send inspo picture separately if needed."
+        );
+
+        window.location.href = "mailto:nailzbyjade@outlook.com?subject=" + subject + "&body=" + body;
+
+        setSubmitted(true);
+        form.reset();
+      }
 
       return React.createElement(
         "div",
         { className: "container" },
 
-        // HEADER
         React.createElement(
           "header",
           { className: "card" },
@@ -138,7 +178,6 @@
           React.createElement("p", { style: { textAlign: "center", margin: 0, opacity: 0.75 } }, "North London")
         ),
 
-        // NAV
         React.createElement(
           "div",
           { className: "buttons" },
@@ -147,7 +186,6 @@
           React.createElement("button", { onClick: () => setSection("book") }, "Book")
         ),
 
-        // HOME
         section === "home" &&
           React.createElement(
             React.Fragment,
@@ -221,7 +259,6 @@
             )
           ),
 
-        // SERVICES
         section === "services" &&
           React.createElement(
             React.Fragment,
@@ -231,17 +268,14 @@
               "div",
               { className: "card" },
               React.createElement("h3", null, "♡ Poly Gel Sets ♡"),
-
               React.createElement("div", { className: "price-row" }, "Short set", "£10"),
               React.createElement("div", { className: "price-row" }, "Medium set", "£15"),
               React.createElement("div", { className: "price-row" }, "Long set", "£20"),
               React.createElement("div", { className: "price-row" }, "Extra long", "£25"),
-
               React.createElement("h3", { style: { marginTop: "16px" } }, "Fill ins / Soak off"),
               React.createElement("div", { className: "price-row" }, "Fill ins (2–3 weeks)", "£10"),
               React.createElement("div", { className: "price-row" }, "Fill ins (4 weeks +)", "£15"),
               React.createElement("div", { className: "price-row" }, "Soak off", "£10"),
-
               React.createElement("h3", { style: { marginTop: "16px" } }, "Add-ons"),
               React.createElement("div", { className: "price-row" }, "Charms", "£1"),
               React.createElement("div", { className: "price-row" }, "Chrome", "£1"),
@@ -253,7 +287,6 @@
               "div",
               { className: "card" },
               React.createElement("h3", null, "♡ Press On Nails ♡"),
-
               React.createElement("h3", { style: { marginTop: "16px" } }, "How to order press on nails"),
               React.createElement(
                 "ol",
@@ -265,36 +298,34 @@
             )
           ),
 
-        // BOOK
         section === "book" &&
           React.createElement(
             "div",
             { className: "card" },
             React.createElement("h3", null, "Request an appointment"),
-            React.createElement("p", { className: "help" }, "Upload one inspo picture."),
+            React.createElement("p", { className: "help" }, "After pressing request booking, your email app will open so you can send your request directly."),
+            React.createElement("p", { className: "help" }, "For inspo pictures, please send them to my Instagram DM after submitting your request."),
             React.createElement("p", { className: "help" }, "Deposit: A non-refundable £5 deposit is required to secure your appointment. Deposit is paid via bank transfer after booking confirmation and is deducted from the total."),
 
             React.createElement(
               "form",
-              {
-                name: "booking-request",
-                method: "POST",
-                action: "/thank-you",
-                "data-netlify": "true",
-                encType: "multipart/form-data"
-              },
-
-              React.createElement("input", { type: "hidden", name: "form-name", value: "booking-request" }),
+              { onSubmit: handleBooking },
 
               React.createElement("input", { name: "name", placeholder: "Your name", required: true }),
               React.createElement("input", { name: "contact", placeholder: "Phone or Instagram @", required: true }),
               React.createElement("input", { name: "service", placeholder: "Service (e.g. Poly gel short / Press ons)", required: true }),
               React.createElement("input", { type: "date", name: "date", required: true }),
               React.createElement("input", { type: "time", name: "time", required: true }),
-              React.createElement("input", { type: "file", name: "inspo", accept: "image/*", required: true }),
               React.createElement("textarea", { name: "notes", placeholder: "Any notes or changes (optional)" }),
               React.createElement("button", { className: "primary", type: "submit" }, "Request booking")
-            )
+            ),
+
+            submitted &&
+              React.createElement(
+                "div",
+                { className: "success" },
+                "Thanks for booking 💗 Can’t wait to meet you! Please send your inspo pic via Instagram DM if needed."
+              )
           )
       );
     }
