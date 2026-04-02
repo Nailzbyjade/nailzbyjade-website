@@ -9,23 +9,112 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #fde2e7; color: #000; }
-    h1, h2, h3 { text-align: center; margin: 0 0 10px; }
-    .container { padding: 18px; max-width: 900px; margin: auto; }
-    .card { background: #fff; padding: 20px; border-radius: 18px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-    .buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
-    button { padding: 12px 18px; border-radius: 18px; border: none; cursor: pointer; background: #000; color: #fff; font-weight: 700; }
-    .price-row { display: flex; justify-content: space-between; gap: 10px; margin: 8px 0; }
-    .contacts-row { display: grid; gap: 10px; }
-    .contact-pill { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.1); }
-    .contact-pill span { font-weight: 800; }
-    a { color: #000; font-weight: 800; text-decoration: none; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fde2e7;
+      color: #000;
+    }
 
-    form { display: grid; gap: 10px; }
-    input, textarea { padding: 12px; border-radius: 14px; border: 1px solid rgba(0,0,0,0.15); font-size: 14px; }
-    textarea { min-height: 90px; resize: vertical; }
-    .help { font-size: 13px; opacity: 0.75; margin: 0; }
-    .primary { background: #000; color: #fff; padding: 14px; border-radius: 18px; font-weight: 800; border: none; cursor: pointer; }
+    h1, h2, h3 {
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    .container {
+      padding: 18px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    button {
+      padding: 12px 18px;
+      border-radius: 18px;
+      border: none;
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 8px 0;
+    }
+
+    .contacts-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-pill {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .contact-pill span {
+      font-weight: 800;
+    }
+
+    a {
+      color: #000;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .help {
+      font-size: 13px;
+      opacity: 0.75;
+      margin: 0;
+    }
+
+    .primary {
+      background: #000;
+      color: #fff;
+      padding: 14px;
+      border-radius: 18px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -138,7 +227,6 @@
             React.Fragment,
             null,
 
-            // POLY GEL
             React.createElement(
               "div",
               { className: "card" },
@@ -161,7 +249,6 @@
               React.createElement("div", { className: "price-row" }, "Nail designs / art", "£1–£5 (price may vary)")
             ),
 
-            // PRESS ONS
             React.createElement(
               "div",
               { className: "card" },
@@ -189,7 +276,13 @@
 
             React.createElement(
               "form",
-              { name: "booking-request", method: "POST", action: "/thank-you", "data-netlify": "true", encType: "multipart/form-data" },
+              {
+                name: "booking-request",
+                method: "POST",
+                action: "/thank-you",
+                "data-netlify": "true",
+                encType: "multipart/form-data"
+              },
 
               React.createElement("input", { type: "hidden", name: "form-name", value: "booking-request" }),
 
